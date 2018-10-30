@@ -1,0 +1,20 @@
+from random import choice, randint
+
+characters = "(", ")", "{", "}", "[", "]"
+N = randint(0, 200000)
+S = ''
+for i in range(0, N):
+    S += choice(characters)
+
+class parentises:
+   def solutions(self, str1):
+        stack, pchar = [], {"(": ")", "{": "}", "[": "]"}
+        for parentise in str1:
+            if parentise in pchar:
+                stack.append(parentise)
+            elif len(stack) == 0 or pchar[stack.pop()] != parentise:
+                return 0
+        return len(stack) == 0
+
+
+print(parentises().solutions(S))
